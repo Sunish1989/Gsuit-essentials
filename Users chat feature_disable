@@ -1,0 +1,25 @@
+// This is a sample Google Apps Script to disable the chat function in Google Suite for a group of users.
+
+function disableChatForUsers() {
+  var userEmailsToDisable = [
+    'user1@example.com',
+    'user2@example.com',
+    'user3@example.com'
+    // Add more user email addresses to disable chat for more users
+  ];
+
+  try {
+    var domain = 'your_domain.com'; // Replace 'your_domain.com' with your actual domain
+    var chatService = AdminDirectory.newChat();
+
+    for (var i = 0; i < userEmailsToDisable.length; i++) {
+      var userEmail = userEmailsToDisable[i];
+      chatService.Users.Chats.update({isSuspended: true}, domain, userEmail);
+      Logger.log('Chat disabled for user: ' + userEmail);
+    }
+
+    Logger.log('Chat disabled for all users successfully.');
+  } catch (e) {
+    Logger.log('Error occurred: ' + e);
+  }
+}
