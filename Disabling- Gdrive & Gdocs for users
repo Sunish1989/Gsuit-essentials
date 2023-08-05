@@ -1,0 +1,31 @@
+function disableDriveAndDocsForUsers() {
+  var userEmailsToDisable = [
+    'user1@example.com',
+    'user2@example.com',
+    'user3@example.com'
+    // Replace the above with the target users list
+  ];
+
+  try {
+    var domain = 'example_domain.com'; // Replace 'example_domain.com' with your actual domain
+
+    for (var i = 0; i < userEmailsToDisable.length; i++) {
+      var userEmail = userEmailsToDisable[i];
+
+      // Suspend Google Drive and Google Docs access
+      var userUpdate = {
+        primaryEmail: userEmail,
+        isDriveSuspended: true,
+        isDocsServiceSuspended: true
+      };
+      
+      AdminDirectory.Users.update(userUpdate, userEmail);
+
+      Logger.log('Drive and Docs disabled for user: ' + userEmail);
+    }
+
+    Logger.log('Drive and Docs disabled for all users successfully.');
+  } catch (e) {
+    Logger.log('Error occurred: ' + e);
+  }
+}
