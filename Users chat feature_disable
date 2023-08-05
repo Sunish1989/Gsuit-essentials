@@ -5,12 +5,12 @@ function disableChatForUsers() {
     'user1@example.com',
     'user2@example.com',
     'user3@example.com'
-    // Add more user email addresses to disable chat for more users
+    // Replace the above with the target users list
   ];
 
   try {
     var domain = 'your_domain.com'; // Replace 'your_domain.com' with your actual domain
-    var chatService = AdminDirectory.newChat();
+    var chatService = AdminDirectory.Users.update();
 
     for (var i = 0; i < userEmailsToDisable.length; i++) {
       var userEmail = userEmailsToDisable[i];
